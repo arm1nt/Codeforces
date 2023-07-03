@@ -1,2 +1,3 @@
-# Codeforces
-Some solutions for Codeforces problems in C / Rust / Java.
+# Codeforces etc
+Some solutions for Codeforces / AtCoder / LC / AOC exercises in Rust / Java.
+
