@@ -1,11 +1,11 @@
 //https://leetcode.com/problems/split-linked-list-in-parts/description/
 
-
 public class SplitLinkedListInParts {
+    
     public static ListNode[] splitListToParts(ListNode head, int k) {
         int size = size(head);
 
-        //Compute 
+        //Compute the sizes of the sublists
         int sublist_size;
         int[] sublist_sizes = new int[k];
         if (size < k) {
@@ -41,19 +41,17 @@ public class SplitLinkedListInParts {
 
         for(int i = 0; i < k; i++) {
             if (sublist_sizes[i] == 0) {
-                resArray[i] = null;
-                continue;
+                break;
             }
 
-            int nodeCounter = sublist_sizes[i];
             ListNode node = head;
             ListNode cutoffEnd = node;
-            while (nodeCounter != 0) {
+            while (sublist_sizes[i] != 0) {
                 head = head.next;
-                if (nodeCounter != 1) {
+                if (sublist_sizes[i] != 1) {
                     cutoffEnd = cutoffEnd.next;
                 }
-                nodeCounter--;
+                sublist_sizes[i]--;
             }
             cutoffEnd.next = null;
             resArray[i] = node;
@@ -64,6 +62,7 @@ public class SplitLinkedListInParts {
 
     private static int sum(int[] subparts) {
         int sum = 0;
+
         for(int i = 0; i < subparts.length; i++) {
             sum += subparts[i];
         }
